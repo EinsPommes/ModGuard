@@ -100,6 +100,29 @@ Das Web-Interface ist erreichbar unter:
   - Konfiguration der Warnstufen
   - Verwaltung der Whitelist
 
+## 🔒 Enhanced URL Safety Features
+
+### URL Safety Detection
+- Advanced URL pattern recognition
+- Detection of known malware test files (EICAR, etc.)
+- Integration with urlscan.io for real-time URL scanning
+- Automatic unsafe URL deletion
+- User warning system with customizable messages
+
+### Security Measures
+- Pattern-based malware detection
+- Real-time URL scanning
+- Comprehensive error handling
+- Detailed security logging
+- Automatic message deletion for unsafe content
+
+### Recent Updates
+- Improved URL pattern recognition
+- Added detection for known malware test files
+- Enhanced error handling and logging
+- Better warning message system
+- More detailed scan results
+
 ## Support
 
 Bei Fragen oder Problemen:
