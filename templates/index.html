@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModGuard Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">ModGuard Dashboard</h1>
+            <p class="text-gray-600">AI-Powered Discord Moderation</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Configuration Section -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-semibold mb-4">Configuration</h2>
+                <form action="/update_config" method="POST">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Mild Violation Threshold</label>
+                            <input type="number" name="mild_threshold" step="0.1" min="0" max="1" 
+                                value="{{ config.warning_levels.mild.threshold }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Moderate Violation Threshold</label>
+                            <input type="number" name="moderate_threshold" step="0.1" min="0" max="1"
+                                value="{{ config.warning_levels.moderate.threshold }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Severe Violation Threshold</label>
+                            <input type="number" name="severe_threshold" step="0.1" min="0" max="1"
+                                value="{{ config.warning_levels.severe.threshold }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Timeout Duration (seconds)</label>
+                            <input type="number" name="timeout_duration" min="0"
+                                value="{{ config.timeout_duration }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Log Channel Name</label>
+                            <input type="text" name="log_channel" 
+                                value="{{ config.log_channel_name }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
+                            Save Configuration
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Recent Warnings Section -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-semibold mb-4">Recent Warnings</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Level</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for warning in warnings %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ warning.timestamp }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ warning.user_id }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ warning.warning_level }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ warning.reason }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add any client-side JavaScript here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Refresh warnings every 30 seconds
+            setInterval(async function() {
+                const response = await fetch('/api/warnings');
+                const data = await response.json();
+                // Update the warnings table
+                // Implementation needed
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

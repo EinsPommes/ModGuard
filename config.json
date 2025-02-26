@@ -1,0 +1,20 @@
+{
+    "warning_levels": {
+        "mild": {
+            "action": "warn",
+            "threshold": 0.7
+        },
+        "moderate": {
+            "action": "timeout",
+            "threshold": 0.8
+        },
+        "severe": {
+            "action": "ban",
+            "threshold": 0.9
+        }
+    },
+    "timeout_duration": 3600,
+    "log_channel_name": "mod-logs",
+    "whitelist": [],
+    "language": "de"
+}
