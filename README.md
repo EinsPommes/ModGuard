@@ -123,6 +123,51 @@ Das Web-Interface ist erreichbar unter:
 - Better warning message system
 - More detailed scan results
 
+## 🔑 Required Permissions
+
+The bot requires the following Discord permissions to function properly:
+
+### Essential Permissions
+- `Moderate Members` - Required for timeout functionality
+- `Kick Members` - Required for kick functionality
+- `Ban Members` - Required for ban functionality
+- `Manage Messages` - Required to delete unsafe messages
+
+### Other Permissions
+- `Send Messages` - To send warning messages
+- `Read Message History` - To process messages
+- `View Channels` - To monitor channels
+
+### Setting Up Permissions
+1. Go to your Discord Server Settings
+2. Click on "Roles"
+3. Create a new role for ModGuard or edit its existing role
+4. Enable the required permissions listed above
+5. Make sure the bot's role is higher in the hierarchy than the roles it needs to moderate
+
+### Bot Invite Link
+When inviting the bot, make sure to select all the required permissions. You can use this invite link template (replace CLIENT_ID with your bot's client ID):
+```
+https://discord.com/api/oauth2/authorize?client_id=CLIENT_ID&permissions=1099780138048&scope=bot
+```
+
+This link includes all necessary permissions for full functionality.
+
+## 🛡️ Moderation Commands
+
+### User Management
+- `!kick @user [reason]` - Kick a user from the server
+- `!ban @user [reason]` - Ban a user from the server
+- `!timeout @user <duration> [unit] [reason]` - Timeout a user
+  - Units: s (seconds), m (minutes), h (hours), d (days)
+  - Example: `!timeout @user 10 m Spamming`
+- `!untimeout @user` - Remove timeout from a user
+
+### Required Permissions
+- Kick command requires "Kick Members" permission
+- Ban command requires "Ban Members" permission
+- Timeout commands require "Moderate Members" permission
+
 ## Support
 
 Bei Fragen oder Problemen:

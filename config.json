@@ -16,5 +16,45 @@
     "timeout_duration": 3600,
     "log_channel_name": "mod-logs",
     "whitelist": [],
-    "language": "de"
+    "language": "de",
+    "moderation": {
+        "warning_thresholds": {
+            "timeout": 3,
+            "kick": 5,
+            "ban": 7
+        },
+        "timeout_durations": {
+            "first": 10,
+            "second": 30,
+            "third": 60
+        },
+        "auto_mod": {
+            "spam": {
+                "action": "timeout",
+                "duration": 10
+            },
+            "unsafe_links": {
+                "action": "timeout",
+                "duration": 30
+            },
+            "hate_speech": {
+                "action": "ban"
+            },
+            "inappropriate_content": {
+                "action": "timeout",
+                "duration": 60
+            },
+            "mild": {
+                "action": "timeout",
+                "duration": 15
+            },
+            "moderate": {
+                "action": "timeout",
+                "duration": 30
+            },
+            "severe": {
+                "action": "ban"
+            }
+        }
+    }
 }
